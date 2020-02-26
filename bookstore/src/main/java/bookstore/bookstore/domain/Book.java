@@ -1,13 +1,27 @@
 package bookstore.bookstore.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 
+@Entity
 public class Book {
+    @Id
+    @GeneratedValue
+    private int id;
+    @Column
     private String author;
+    @Column
     private String title;
+    @Column
     private int year;
+    @Column
     private String isbn;
+    @Column
     private BigDecimal price;
+
 
     public Book(String author, String title, int year, String isbn, BigDecimal price) {
         this.author = author;
