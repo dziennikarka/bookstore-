@@ -2,6 +2,7 @@ package bookstore.bookstore.domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Category {
@@ -11,13 +12,13 @@ public class Category {
     @Column
     private String name;
     @OneToMany
-    private ArrayList<Book> books;
+    private List<Book> books;
 
-    public ArrayList<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(ArrayList<Book> books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 

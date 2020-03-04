@@ -26,18 +26,10 @@ public class Runner implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-        Book bookOne = new Book("Dean Koonz", "Eyes of the night", 1981, "123456", new BigDecimal("14.95"));
-        em.persist(bookOne);
-
-        Book bookTWo = new Book("Steven King", "It", 1985, "234567", new BigDecimal("25.00"));
-        em.persist(bookTWo);
-
-        Book bookThree = new Book("Howard Lovecraft", "Call of Ctulhu",1927, "456789", new BigDecimal("55.00"));
-        em.persist(bookThree);
-
         Category categoryOne = new Category();
         categoryOne.setName("comic");
         categories.save(categoryOne);
+
 
         Category categoryTwo = new Category();
         categoryTwo.setName("scifi");
@@ -46,6 +38,19 @@ public class Runner implements CommandLineRunner {
         Category categoryThree = new Category();
         categoryThree.setName("crime story");
         categories.save(categoryThree);
+
+        Book bookOne = new Book("Dean Koonz", "Eyes of the night", 1981, "123456", new BigDecimal("14.95"));
+        bookOne.setCategory(categoryOne);
+        em.persist(bookOne);
+
+        Book bookTWo = new Book("Steven King", "It", 1985, "234567", new BigDecimal("25.00"));
+        bookTWo.setCategory(categoryTwo);
+        em.persist(bookTWo);
+
+        Book bookThree = new Book("Howard Lovecraft", "Call of Ctulhu",1927, "456789", new BigDecimal("55.00"));
+        bookThree.setCategory(categoryThree);
+        em.persist(bookThree);
+
 
     }
 
