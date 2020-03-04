@@ -1,9 +1,6 @@
 package bookstore.bookstore.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -21,6 +18,8 @@ public class Book {
     private String isbn;
     @Column
     private BigDecimal price;
+    @ManyToOne
+    private Category category;
 
 
     public Book(String author, String title, int year, String isbn, BigDecimal price) {
@@ -69,6 +68,14 @@ public class Book {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     //text needs to be changed

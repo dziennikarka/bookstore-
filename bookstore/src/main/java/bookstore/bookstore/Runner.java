@@ -1,6 +1,8 @@
 package bookstore.bookstore;
 
+import bookstore.bookstore.dal.CategoryRepository;
 import bookstore.bookstore.domain.Book;
+import bookstore.bookstore.domain.Category;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,7 +18,8 @@ import java.math.BigDecimal;
 public class Runner implements CommandLineRunner {
     @Autowired
     private EntityManager em;
-
+    @Autowired
+    private CategoryRepository categories;
     public static void main(String[] args) {
         SpringApplication.run(Runner.class, args);
     }
@@ -31,5 +34,20 @@ public class Runner implements CommandLineRunner {
 
         Book bookThree = new Book("Howard Lovecraft", "Call of Ctulhu",1927, "456789", new BigDecimal("55.00"));
         em.persist(bookThree);
+
+        Category categoryOne = new Category();
+        categoryOne.setName("comic");
+        categories.save(categoryOne);
+
+        Category categoryTwo = new Category();
+        categoryTwo.setName("scifi");
+        categories.save(categoryTwo);
+
+        Category categoryThree = new Category();
+        categoryThree.setName("crime story");
+        categories.save(categoryThree);
+
     }
+
+
 }
