@@ -1,5 +1,7 @@
 package bookstore.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -7,7 +9,7 @@ import java.math.BigDecimal;
 public class Book {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     @Column
     private String author;
     @Column
@@ -19,16 +21,16 @@ public class Book {
     @Column
     private BigDecimal price;
     @ManyToOne
+    @JsonIgnore
     private Category category;
 
-
-    public Book(String author, String title, int year, String isbn, BigDecimal price) {
+    /*public Book(String author, String title, int year, String isbn, BigDecimal price) {
         this.author = author;
         this.title = title;
         this.year = year;
         this.isbn = isbn;
         this.price = price;
-    }
+    }*/
 
     public String getAuthor() {
         return author;

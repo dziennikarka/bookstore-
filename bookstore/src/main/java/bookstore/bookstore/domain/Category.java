@@ -8,7 +8,7 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     @Column
     private String name;
     @OneToMany
@@ -22,11 +22,11 @@ public class Category {
         this.books = books;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
