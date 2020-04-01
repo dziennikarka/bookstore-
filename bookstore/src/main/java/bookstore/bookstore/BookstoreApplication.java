@@ -1,8 +1,7 @@
 package bookstore.bookstore;
 
 import bookstore.bookstore.dal.CategoryRepository;
-import bookstore.bookstore.domain.Book;
-import bookstore.bookstore.domain.Category;
+import bookstore.bookstore.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,11 @@ public class BookstoreApplication implements CommandLineRunner {
     private EntityManager em;
     @Autowired
     private CategoryRepository categories;
+    @Autowired
+    private UserRepository urepository;
+    @Autowired
+    private BookRepository brepository;
+
     public static void main(String[] args) {
         SpringApplication.run(BookstoreApplication.class, args);
     }
@@ -68,6 +72,17 @@ public class BookstoreApplication implements CommandLineRunner {
         bookThree.setPrice(new BigDecimal("55.00"));
         bookThree.setCategory(categoryThree);
         em.persist(bookThree);
+
+        // Create users: admin/admin user/user
+        User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+        User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+        urepository.save(user1);
+        urepository.save(user2);
+
+        log.info("fetch all books");
+        for (Book book : brepository.findAll()) {
+            log.info(book.toString());
+        }
 
 
     }

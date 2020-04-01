@@ -18,6 +18,12 @@ public class BookController {
     @Autowired
     private BookRepository bookRepository;
 
+    // Show all students
+    @RequestMapping(value="/login")
+    public String login() {
+        return "login";
+    }
+
     @GetMapping("/index")
     public String index(){
 
@@ -44,6 +50,13 @@ public class BookController {
     public @ResponseBody
     Optional<Book> findBookRest(@PathVariable("id") Long bookId) {
         return bookRepository.findById(bookId);
+    }
+
+    // Save new book
+    @RequestMapping(value = "/books/save", method = RequestMethod.POST)
+    public String save(Book book){
+        bookRepository.save(book);
+        return "redirect:booklist";
     }
 
 
